@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Игнор
+=======
+# Игнорируем всякое
+>>>>>>> 7a394072d843ef6e672b73e44d801b3cca8497bf
 .idea/
 cmake-build-debug/
 cmake-build-release/
