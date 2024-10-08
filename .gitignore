@@ -1,4 +1,4 @@
-# Игнорируем временные и сборочные файлы CLion
+# Игнор
 .idea/
 cmake-build-debug/
 cmake-build-release/
