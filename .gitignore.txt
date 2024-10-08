@@ -1,0 +1,16 @@
+# Игнорируем временные и сборочные файлы CLion
+.idea/
+cmake-build-debug/
+cmake-build-release/
+*.exe
+*.out
+*.o
+*.log
+*.tmp
+CMakeFiles/
+CMakeCache.txt
+build.ninja
+*.ninja
+.ninja_log
+.ninja_deps
+*.iml
