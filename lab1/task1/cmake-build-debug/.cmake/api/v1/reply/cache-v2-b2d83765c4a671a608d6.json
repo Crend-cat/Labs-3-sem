@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/User/CLionProjects/untitled4/cmake-build-debug"
+			"value" : "c:/Users/User/Labs-3-sem/lab1/task1/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -431,7 +431,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/User/CLionProjects/untitled4/cmake-build-debug/CMakeFiles/pkgRedirects"
+			"value" : "C:/Users/User/Labs-3-sem/lab1/task1/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -503,7 +503,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/User/CLionProjects/untitled4"
+			"value" : "C:/Users/User/Labs-3-sem/lab1/task1"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1131,7 +1131,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/User/CLionProjects/untitled4/cmake-build-debug"
+			"value" : "C:/Users/User/Labs-3-sem/lab1/task1/cmake-build-debug"
 		},
 		{
 			"name" : "untitled4_IS_TOP_LEVEL",
@@ -1155,7 +1155,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/User/CLionProjects/untitled4"
+			"value" : "C:/Users/User/Labs-3-sem/lab1/task1"
 		}
 	],
 	"kind" : "cache",

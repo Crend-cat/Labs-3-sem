@@ -1,6 +1,6 @@
 #include "head.h"
 
-int main(int argc, char* argv[]) { // кол-во арг и их массив ( 1 это имя программы )
+int main(int argc, char* argv[]) { // кол-во арг и их массив ( 1 в массиве это имя программы )
     if(argc != 3 ){
         printf("Error: uncorrect input\n");
         return INVALID_INPUT;
