@@ -9,6 +9,7 @@ cmake-build-release/
 *.tmp
 CMakeFiles/
 CMakeCache.txt
+CMakeLists.txt
 build.ninja
 *.ninja
 .ninja_log
