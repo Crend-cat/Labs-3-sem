@@ -35,55 +35,31 @@ enum Errors Stroka_to_ldouble(const char *str, long double * answer){
 }
 
 
-void Swap(long double* q, long double* w){
-    long double e = *q;
-    *q = *w;
-    *w = e;
-}
-
-int Duplicate(long double*** answer, int *count_arr, long double* arr, long double eps){
-    int count = 0;
-    for(int i = 0; i < *count_arr; ++i){
-        for(int j = 0; j < 3; ++j){
-            if(fabsl((*answer)[i][j] - arr[j] < eps)){
-                count++;
-            }
-        }
-        if(count == 3){ //если есть дубликат то 1
-            return 1;
-
-        }
-        count = 0;
+enum Errors GeneratePermutation(long double*** answer, int q, int w, int e){
+    *answer = (long double**)malloc(6 * sizeof(long double*));
+    if (*answer == NULL) {
+        return INVALID_MEMORY;
     }
-    return 0;
-}
 
-enum Errors Perestan(long double*** answer, int left, int right, int *count, long double* arr, long double eps){//*count ков-во перестан, arr - массив с коэф
-    enum Errors stat; //возв ерроры
-    if(left == right){//сделали перестановку -> проверка -> записываем
-        if(Duplicate(answer, count, arr, eps)){// 1 - есть дубликат
-            return OK;
-        }
-        (*answer)[*count] = (long double *)malloc(3 * sizeof(long double));
-        if((*answer)[*count] == NULL){
+    for (int i = 0; i < 6; i++) {
+        (*answer)[i] = (long double*)malloc(3 * sizeof(long double));
+        if ((*answer)[i] == NULL) {
+            for (int j = 0; j < i; j++) {
+                free((*answer)[j]);
+            }
+            free(*answer);
             return INVALID_MEMORY;
         }
-        stat = OK;
-        for(int i = 0; i < 3; ++i){
-            (*answer)[*count][i] = arr[i]; //запись перестановки
-        }
-        (*count)++;
     }
-    else{
-        stat = OK;
-        for(int j = left; j <= right; j++){
-            Swap(arr + left, arr + j);
-            stat = Perestan(answer, left + 1, right, count, arr, eps);
-            Swap(arr + left, arr + j);//поменяли обратно
-        }
-    }
-    return stat;
 
+
+    (*answer)[0][0] = q; (*answer)[0][1] = w; (*answer)[0][2] = e;  // 1 2 3
+    (*answer)[1][0] = q; (*answer)[1][1] = e; (*answer)[1][2] = w;  // 1 3 2
+    (*answer)[2][0] = w; (*answer)[2][1] = q; (*answer)[2][2] = e;  // 2 1 3
+    (*answer)[3][0] = w; (*answer)[3][1] = e; (*answer)[3][2] = q;  // 2 3 1
+    (*answer)[4][0] = e; (*answer)[4][1] = q; (*answer)[4][2] = w;  // 3 1 2
+    (*answer)[5][0] = e; (*answer)[5][1] = w; (*answer)[5][2] = q;  // 3 2 1
+    return OK;
 }
 
 int Overflow_ld(long double* n1, long double* n2, long double epss) {

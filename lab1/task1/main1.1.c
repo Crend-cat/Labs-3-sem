@@ -1,4 +1,4 @@
-#include "head.h"
+#include "head1.1.h"
 
 int main(int argc, char* argv[]) { // кол-во арг и их массив ( 1 в массиве это имя программы )
     if(argc != 3 ){

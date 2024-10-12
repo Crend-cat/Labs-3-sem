@@ -1,4 +1,4 @@
-#include "head.h"
+#include "head1.1.h"
 
 
 enum Errors Stroka_to_chisl(const char *str, long int * answer, int base){

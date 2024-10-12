@@ -27,33 +27,24 @@ int main(int argc, char* argv[]){
                 return INVALID_INPUT;
             }
 
-            int size_arr = 3;
-            int count_p = 0;
-            long double **answer = (long double **) malloc(6 * sizeof(long double *));
+
+            long double **answer = (long double **)malloc(6 * sizeof(long double *));
             // массив с указателями на массивы (6* на размер 1 указателя на вариант перестановки) 6 патаму что сущ 6 вариантов перестановки 3 элементов
-            long double *arr_coef = (long double *) malloc(3 * sizeof(long double));
-            if ((answer == NULL) || (arr_coef == NULL)) {
+            if (answer == NULL){
                 free(answer);
-                free(arr_coef);
                 printf("Error with memory\n");
                 return INVALID_MEMORY;
             }
 
-            arr_coef[0] = coef1;
-            arr_coef[1] = coef2;
-            arr_coef[2] = coef3;
-            enum Errors stat = Perestan(&answer, 0, size_arr - 1, &count_p, arr_coef, eps);
+            enum Errors stat;
+            stat = GeneratePermutation(&answer, coef1, coef2, coef3);
             if (stat != OK) {
-                for (int i = 0; i < count_p; ++i) {
-                    free(answer[i]);
-                }
-                free(arr_coef);
-                free(answer);
                 printf("Error with memory\n");
                 return INVALID_MEMORY;
             }
 
-            for (int i = 0; i < count_p; ++i) {
+
+            for (int i = 0; i < 6; ++i) {
                 printf("Квадратное уравнение (%d) %Lfx^2 + %Lfx + %Lf\n", i + 1, answer[i][0], answer[i][1],
                        answer[i][2]);
                 long double a = answer[i][0];
@@ -74,11 +65,10 @@ int main(int argc, char* argv[]){
                 printf("\n");
             }
 
-            for (int i = 0; i < count_p; ++i) {
+            for (int i = 0; i < 6; ++i) {
                 free(answer[i]);
             }
             free(answer);
-            free(arr_coef);
             break;
 
         case 'm':

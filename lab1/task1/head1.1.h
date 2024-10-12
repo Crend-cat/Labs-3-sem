@@ -1,5 +1,5 @@
-#ifndef UNTITLED4_HEAD_H
-#define UNTITLED4_HEAD_H
+#ifndef UNTITLED4_HEAD1_1_H
+#define UNTITLED4_HEAD1_1_H
 
 #include <stdio.h>
 #include <stdlib.h>
