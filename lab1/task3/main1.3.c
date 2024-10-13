@@ -45,7 +45,7 @@ int main(int argc, char* argv[]){
 
 
             for (int i = 0; i < 6; ++i) {
-                printf("Квадратное уравнение (%d) %Lfx^2 + %Lfx + %Lf\n", i + 1, answer[i][0], answer[i][1],
+                printf("The quadratic equation (%d) %Lfx^2 + %Lfx + %Lf\n", i + 1, answer[i][0], answer[i][1],
                        answer[i][2]);
                 long double a = answer[i][0];
                 long double b = answer[i][1];
@@ -53,7 +53,7 @@ int main(int argc, char* argv[]){
 
                 long double disc = b * b - 4.0 * a * c;
                 if (disc < 0) {
-                    printf("Действительных корней нет\n");
+                    printf("There are no valid roots\n");
                 } else {
                     disc = sqrt(disc);
                     b *= -1.0;
@@ -88,9 +88,9 @@ int main(int argc, char* argv[]){
             }
 
             if (x1 % x2 == 0) {
-                printf("Число %ld делится на %ld без остатка\n", x1, x2);
+                printf("The number %ld is divided by %ld without remainder\n", x1, x2);
             } else {
-                printf("Число %ld не делится на %ld без остатка\n", x1, x2);
+                printf("The number %ld is not divided by %ld without remainder\n", x1, x2);
             }
             break;
 
