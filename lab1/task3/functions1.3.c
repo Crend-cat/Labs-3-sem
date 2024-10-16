@@ -64,7 +64,7 @@ enum Errors GeneratePermutation(long double*** answer, int q, int w, int e){
 
 int Overflow_ld(long double* n1, long double* n2, long double epss) {
     long double answer = *n1 * *n2;
-    return (answer - DBL_MAX <= epss && answer + DBL_MAX >= epss);
+    return (answer - LDBL_MAX <= epss && answer + LDBL_MAX >= epss);
 }
 
 

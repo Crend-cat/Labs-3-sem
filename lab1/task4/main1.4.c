@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) // имя  -nd (-d) input out (нет out)
             printf("Error with memory\n");
             return INVALID_MEMORY;
         }
-        sprintf(out, "out_%s", name); // out + out_input (через буфер)
+        sprintf(out, "out_%s", name); // out_ + file.txt
     }
 
         printf("Complite, check out_file\n");
@@ -73,7 +73,6 @@ int main(int argc, char* argv[]) // имя  -nd (-d) input out (нет out)
                 break;
             default:
                 printf("Error uncorrect flag: %s\n", argv[1]);
-                return INVALID_INPUT;
                 break;
         }
 

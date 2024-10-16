@@ -1,6 +1,6 @@
 #include "head1.4.h"
 
-int Compare_paths(const char *path1, const char *path2){ // с конца
+int Compare_paths(const char *path1, const char *path2){
     int a1 = 0, a2 = 0;
     if (path1[0] == '.' && path1[1] == '.') {
         a1 = 2;
@@ -52,7 +52,7 @@ enum Errors Delete_a(const char *in, const char *out)
     while ((c = fgetc(f1)) != EOF)
     {
         if (c < '0' || c > '9') {
-            fputc(c, f2); // запись 1 символа в файл
+            fputc(c, f2);
         }
     }
 
@@ -121,7 +121,7 @@ enum Errors Count_s(const char *in, const char *out)
         }
         if (c == '\n')
         {
-            fprintf(f2, "%d\n\n", k);
+            fprintf(f2, "%d\n\n", k - 2);
             k = 0;
         }
     }
