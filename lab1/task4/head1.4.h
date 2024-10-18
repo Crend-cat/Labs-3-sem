@@ -9,6 +9,7 @@
 #include <float.h>
 #include <stdbool.h>
 #include <ctype.h>
+#include <math.h>
 
 enum Errors{
     OK,
@@ -17,11 +18,10 @@ enum Errors{
     OPEN_FILE_ERROR
 };
 
-int Compare_paths(const char *path1, const char *path2);
-enum Errors Delete_a(const char *in, const char *out);
-enum Errors Count_l(const char *in, const char *out);
-enum Errors Count_s(const char *in, const char *out);
-enum Errors Ascii(const char *in, const char *out);
+void Delete_n(FILE *in, FILE *out);
+void Count_l(FILE *in, FILE *out);
+void Count_s(FILE *in, FILE *out);
+void Ascii(FILE *in, FILE *out);
 
 
 #endif

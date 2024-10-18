@@ -51,19 +51,38 @@ int main(int argc, char* argv[]){
                 long double b = answer[i][1];
                 long double c = answer[i][2];
 
-                long double disc = b * b - 4.0 * a * c;
-                if (disc < 0) {
-                    printf("There are no valid roots\n");
-                } else {
-                    disc = sqrt(disc);
-                    b *= -1.0;
-                    long double x1 = (b - disc) / (2.0 * a);
-                    long double x2 = (b + disc) / (2.0 * a);
-                    printf("x1 = %Lf\t", x1);
-                    printf("x2 = %Lf\n", x2);
+                if (fabsl(a) <= eps) {  // Если коэффициент при x^2 равен 0
+                    if (fabsl(b) <= eps) {  // Линейное уравнение с b = 0
+                        if (fabsl(c) <= eps) {
+                            printf("Infinite number of solutions\n");
+                            printf("\n");
+                        } else {
+                            printf("No solutions\n");
+                            printf("\n");
+                        }
+                    } else {  //линейное уравнение bx + c = 0
+                        long double x = -c / b;
+                        printf("Linear equation: x = %Lf\n", x);
+                        printf("\n");
+                    }
                 }
-                printf("\n");
+                else{
+
+                    long double disc = b * b - 4.0 * a * c;
+                    if (disc < 0.0) {
+                        printf("There are no valid roots\n");
+                    } else {
+                        disc = sqrt(disc);
+                        b *= -1.0;
+                        long double x1 = (b - disc) / (2.0 * a);
+                        long double x2 = (b + disc) / (2.0 * a);
+                        printf("x1 = %Lf\t", x1);
+                        printf("x2 = %Lf\n", x2);
+                    }
+                    printf("\n");
+                }
             }
+
 
             for (int i = 0; i < 6; ++i) {
                 free(answer[i]);

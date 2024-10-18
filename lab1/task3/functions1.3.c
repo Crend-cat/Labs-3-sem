@@ -52,13 +52,22 @@ enum Errors GeneratePermutation(long double*** answer, int q, int w, int e){
         }
     }
 
+    long double coefficients[3] = {q, w, e};
+    int index = 0;
 
-    (*answer)[0][0] = q; (*answer)[0][1] = w; (*answer)[0][2] = e;  // 1 2 3
-    (*answer)[1][0] = q; (*answer)[1][1] = e; (*answer)[1][2] = w;  // 1 3 2
-    (*answer)[2][0] = w; (*answer)[2][1] = q; (*answer)[2][2] = e;  // 2 1 3
-    (*answer)[3][0] = w; (*answer)[3][1] = e; (*answer)[3][2] = q;  // 2 3 1
-    (*answer)[4][0] = e; (*answer)[4][1] = q; (*answer)[4][2] = w;  // 3 1 2
-    (*answer)[5][0] = e; (*answer)[5][1] = w; (*answer)[5][2] = q;  // 3 2 1
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+                if (i != j && i != k && j != k) { // Проверка на уникальность индексов
+                    (*answer)[index][0] = coefficients[i];
+                    (*answer)[index][1] = coefficients[j];
+                    (*answer)[index][2] = coefficients[k];
+                    index++;
+                }
+            }
+        }
+    }
+
     return OK;
 }
 

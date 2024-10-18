@@ -19,16 +19,31 @@ enum Errors Stroka_to_lint(const char *str, long int * answer, int base){
 
 enum Errors Arr_gen(long int begin, long int end, long int ** answer, int size){
 
+    if (size < 2) {
+        return INVALID_INPUT;
+    }
+
     (*answer) = (long int *) malloc(size * sizeof(long int));
     if ((*answer) == NULL)
     {
         return INVALID_MEMORY;
     }
     srand(time(NULL)); // иниц генератора. time для rand() иначе одна и та же пос-ть будет всегда гененриться
-    for(int i = 0; i < size; ++i)
-    {
-        (*answer)[i] = rand() % (labs(end) + 1 - labs(begin)) + begin; // % целое число = от 0 до разницы между begin и end
+    long int min_value = (begin < end) ? begin : end;
+    long int max_value = (begin > end) ? begin : end;
+
+    long int range = labs(max_value - min_value) + 1; //диапазон
+
+    // Проверка на переполнение range
+    if (range > RAND_MAX) {
+        free(*answer);
+        return INVALID_INPUT;
     }
+
+    for (int i = 0; i < size; ++i) {
+        (*answer)[i] = rand() % range + min_value;
+    }
+
     return OK;
 }
 
@@ -73,7 +88,7 @@ enum Errors Arr_gen_and_find_closest(short ** arr_a, int size_a, short ** arr_b,
         free(arr_a);
         return INVALID_MEMORY;
     }
-    (*arr_c) = (short*) malloc(sizeof(short) * size_a);
+
     bubble_sort(arr_b, size_b);
 
     for(int i = 0; i < size_a; ++i)

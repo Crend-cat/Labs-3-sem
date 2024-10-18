@@ -8,8 +8,7 @@ int main(int argc, char* argv[]){
         case 3:
 
             if(Stroka_to_lint(argv[1], &a, 10) != OK ||
-                    Stroka_to_lint(argv[2], &b, 10) != OK ||
-               a > b){
+                    Stroka_to_lint(argv[2], &b, 10) != OK){
 
                 printf("Error: uncorrect input\n");
                 return INVALID_INPUT;
@@ -17,31 +16,37 @@ int main(int argc, char* argv[]){
 
             long int* answer_arr = NULL;
             int size = 20;
-            if(Arr_gen(a, b, &answer_arr, size) != OK)
+            if(Arr_gen(a, b, &answer_arr, size) == INVALID_MEMORY)
             {
                 printf("Error with memory\n");
                 free(answer_arr);
                 return INVALID_MEMORY;
             }
-
-
-            printf("Our massive before:\n");
-            for(int i = 0; i < size; ++i)
+            else if(Arr_gen(a, b, &answer_arr, size) == INVALID_INPUT)
             {
-                printf("%ld ", answer_arr[i]);
+                printf("Error with arrays sizeeee\n");
+                free(answer_arr);
+                return INVALID_INPUT;
             }
-            printf("\n");
 
-            Swap_min_max(&answer_arr, size);
+            else {
 
-            printf("Our massive after:\n");
-            for(int i = 0; i < size; ++i)
-            {
-                printf("%ld ", answer_arr[i]);
+                printf("Our massive before:\n");
+                for (int i = 0; i < size; ++i) {
+                    printf("%ld ", answer_arr[i]);
+                }
+                printf("\n");
+
+                Swap_min_max(&answer_arr, size);
+
+                printf("Our massive after:\n");
+                for (int i = 0; i < size; ++i) {
+                    printf("%ld ", answer_arr[i]);
+                }
+                printf("\n");
+                free(answer_arr);
+                break;
             }
-            printf("\n");
-            free(answer_arr);
-            break;
 
         case 1:
 
@@ -54,12 +59,15 @@ int main(int argc, char* argv[]){
             short * arr_a = NULL;
             short * arr_b = NULL;
             short * arr_c = NULL;
-            if(Arr_gen2(-1000, 1000, &arr_a, size_a) != OK ||
-               Arr_gen2(-1000, 1000, &arr_b, size_b) != OK)
-            {
-                printf("Error with memory\n");
+
+            if (Arr_gen2(-1000, 1000, &arr_a, size_a) != OK) {
+                printf("Error with memory for arr_a\n");
+                return INVALID_MEMORY;
+            }
+
+            if (Arr_gen2(-1000, 1000, &arr_b, size_b) != OK) {
+                printf("Error with memory for arr_b\n");
                 free(arr_a);
-                free(arr_b);
                 return INVALID_MEMORY;
             }
 
@@ -79,7 +87,9 @@ int main(int argc, char* argv[]){
                 printf("Error with memory\n");
                 free(arr_a);
                 free(arr_b);
-                free(arr_c);
+                if (arr_c != NULL) {
+                    free(arr_c); // освобождаем только если arr_c инициализирован
+                }
                 return INVALID_MEMORY;
             }
 
