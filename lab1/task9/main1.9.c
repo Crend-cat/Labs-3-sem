@@ -104,6 +104,8 @@ int main(int argc, char* argv[]){
             free(arr_c);
             break;
 
+
+
         default:
             printf("Error uncorrect flag: %s\n", argv[1]);
             break;

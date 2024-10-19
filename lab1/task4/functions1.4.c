@@ -1,5 +1,17 @@
 #include "head1.4.h"
 
+
+enum Errors Validate_input(int argc, char **argv){
+    char full_path_1[BUFSIZ], full_path_2[BUFSIZ];
+
+    if (!realpath(argv[2], full_path_1) || !realpath(argv[3], full_path_2))
+        return INVALID_INPUT;
+    if (!strcmp(full_path_1, full_path_2))
+        return INVALID_INPUT;
+    return OK;
+}
+
+
 void Delete_n(FILE *in, FILE *out)
 {
     int c;

@@ -1,7 +1,6 @@
 #ifndef UNTITLED4_HEAD1_4_H
 #define UNTITLED4_HEAD1_4_H
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
@@ -10,6 +9,8 @@
 #include <stdbool.h>
 #include <ctype.h>
 #include <math.h>
+
+
 
 enum Errors{
     OK,
@@ -22,6 +23,8 @@ void Delete_n(FILE *in, FILE *out);
 void Count_l(FILE *in, FILE *out);
 void Count_s(FILE *in, FILE *out);
 void Ascii(FILE *in, FILE *out);
+
+enum Errors Validate_input(int a, char **argv);
 
 
 #endif

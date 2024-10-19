@@ -8,16 +8,19 @@ int main(int argc, char *argv[]){
         return INVALID_INPUT;
     }
 
-    char *num_arr = malloc( 52 * sizeof(char ));
+    char *num_arr = malloc( 70 * sizeof(char ));
     if(num_arr == NULL){
         printf("Error: uncorrect input\n");
         return INVALID_INPUT;
     }
 
+
+
+
     long long num_10base;
     long long max_num = LLONG_MIN;
 
-    while(scanf("%51s", num_arr)){ // нот море твэн 51 символс считается
+    while(scanf("%69s", num_arr)){
         if(!strcmp(num_arr, "Stop")) {
             if (max_num == LLONG_MIN) {
                 free(num_arr);
@@ -25,7 +28,7 @@ int main(int argc, char *argv[]){
                 return INVALID_INPUT;
             }
 
-            char *num_new_base = malloc(25 * sizeof(char)); // 25 штоб влезло
+            char *num_new_base = malloc(70 * sizeof(char));
             if (num_new_base == NULL) {
                 printf("Error with memory\n");
                 return INVALID_MEMORY;

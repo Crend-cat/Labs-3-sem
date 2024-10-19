@@ -18,6 +18,7 @@ int main(int argc, char *argv[]) {  // имя  -nd (-d) input out (нет out)
     }
 
 
+
     FILE *output = NULL;
     char *outfile_path = NULL;
     int len_flag = strlen(argv[1]);
@@ -36,9 +37,8 @@ int main(int argc, char *argv[]) {  // имя  -nd (-d) input out (нет out)
             }
 
             if (argv[1][1] == 'n') {
-                char *last_slesh = strrchr(argv[2], '/');
-                char *last_slesh_2 = strrchr(argv[3], '/');
-                if (strcmp(last_slesh + 1, last_slesh_2 + 1) == 0) {
+
+                if(Validate_input(argc, argv) != OK){
                     printf("Error: uncorrect input\n");
                     fclose(input);
                     return INVALID_INPUT;

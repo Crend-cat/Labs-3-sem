@@ -41,7 +41,7 @@ enum Errors Str_to_llint(const char *str, long long *answer, int base){
     return OK;
 }
 
-void To_xbase(long long num, int base, char *result)
+void To_xbase(long long num, int base, char *answer)
 {
     int i, flag_minus = 0;
     char temp;
@@ -53,16 +53,22 @@ void To_xbase(long long num, int base, char *result)
     }
     while (num)
     {
-        result[len_result++] = ((num % base > 9) ? (num % base - 10 + 'A') : (num % base + '0'));
+        if(num % base > 9){
+            answer[len_result++] = (num % base - 10 + 'A');
+        }
+        else{
+            answer[len_result++] = (num % base + '0');
+        }
+
         num /= base;
     }
     if (flag_minus)
-        result[len_result++] = '-';
-    for (i = 0; i < len_result / 2; i++)
+        answer[len_result++] = '-';
+    for (i = 0; i < len_result / 2; i++) // разворачиваем строку тк разряды в обратном порядке записаны
     {
-        temp = result[i];
-        result[i] = result[len_result - 1 - i];
-        result[len_result - 1 - i] = temp;
+        temp = answer[i];
+        answer[i] = answer[len_result - 1 - i];
+        answer[len_result - 1 - i] = temp;
     }
-    result[len_result] = '\000';
+    answer[len_result] = '\0';
 }

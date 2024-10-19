@@ -47,12 +47,12 @@ int main(int argc, char* argv[]){
             for (int i = 0; i < 6; ++i) {
                 printf("The quadratic equation (%d) %Lfx^2 + %Lfx + %Lf\n", i + 1, answer[i][0], answer[i][1],
                        answer[i][2]);
-                long double a = answer[i][0];
-                long double b = answer[i][1];
-                long double c = answer[i][2];
+                 double a = answer[i][0];
+                 double b = answer[i][1];
+                 double c = answer[i][2];
 
                 if (fabsl(a) <= eps) {  // Если коэффициент при x^2 равен 0
-                    if (fabsl(b) <= eps) {  // Линейное уравнение с b = 0
+                    if (fabsl(b) <= eps) {
                         if (fabsl(c) <= eps) {
                             printf("Infinite number of solutions\n");
                             printf("\n");
@@ -61,23 +61,35 @@ int main(int argc, char* argv[]){
                             printf("\n");
                         }
                     } else {  //линейное уравнение bx + c = 0
-                        long double x = -c / b;
-                        printf("Linear equation: x = %Lf\n", x);
-                        printf("\n");
+                        double x = -c / b;
+                        if(fabs(x) == 0){
+                            printf("Linear equation: x = 0\n");
+                            printf("\n");
+                        }
+                        else {
+                            printf("Linear equation: x = %f\n", x);
+                            printf("\n");
+                        }
                     }
                 }
                 else{
 
-                    long double disc = b * b - 4.0 * a * c;
+                    double disc = b * b - 4.0 * a * c;
                     if (disc < 0.0) {
                         printf("There are no valid roots\n");
                     } else {
                         disc = sqrt(disc);
                         b *= -1.0;
-                        long double x1 = (b - disc) / (2.0 * a);
-                        long double x2 = (b + disc) / (2.0 * a);
-                        printf("x1 = %Lf\t", x1);
-                        printf("x2 = %Lf\n", x2);
+                        double x1 = (b - disc) / (2.0 * a);
+                        double x2 = (b + disc) / (2.0 * a);
+
+                        if((fabs(x1) == 0) && (fabs(x2) == 0)){
+                            printf("Linear equation: x = 0\n");
+                        }
+                        else {
+                            printf("x1 = %f\t", x1);
+                            printf("x2 = %f\n", x2);
+                        }
                     }
                     printf("\n");
                 }
