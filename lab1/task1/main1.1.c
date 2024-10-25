@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) { // кол-во арг и их массив ( 
 
         long int number = 0;
         if (Stroka_to_chisl(argv[2], &number, 10) != OK) {
-            printf("Error: uncorrect input\n");
+            printf("Error: incorrect input\n");
             return INVALID_INPUT;
         }
 
