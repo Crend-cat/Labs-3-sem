@@ -13,7 +13,7 @@ enum Errors Str_to_llint(const char *str, long long *answer, int base){
                 }
                 flag = 1;
             }
-            else if((str[i] < '0' || str[i] > base + '0')){
+            else if((str[i] < '0' || str[i] > base + '0')){ // если не от 0 до 9
                 return INVALID_INPUT;
             }
         }
@@ -64,7 +64,8 @@ void To_xbase(long long num, int base, char *answer)
     }
     if (flag_minus)
         answer[len_result++] = '-';
-    for (i = 0; i < len_result / 2; i++) // разворачиваем строку тк разряды в обратном порядке записаны
+
+    for (i = 0; i < len_result / 2; i++)
     {
         temp = answer[i];
         answer[i] = answer[len_result - 1 - i];

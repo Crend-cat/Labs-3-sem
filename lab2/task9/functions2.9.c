@@ -25,6 +25,7 @@ int Has_representation(int base, double num){
         num *= 10;
         denominator *= 10;
     }
+
     numerator = (unsigned long long)num; // num из double в unsigned long long
     denominator = denominator / Nod(numerator, denominator);
     i = 2;
@@ -59,6 +60,7 @@ enum Errors Has_finite_representation(int base, double *answer, int *len_ans, in
 
     enum Errors stat = OK;
     double num;
+
     va_list args;
     va_start(args, count_nums);
 

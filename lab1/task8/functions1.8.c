@@ -1,87 +1,75 @@
 #include "head1.8.h"
 
-enum Errors Read_num(FILE *file, char *num, int *len, int *base) {
-    *len = 0;
-    *base = 2; // начинаем с минимальной системы счисления
-    char c;
+enum Errors Read_num(FILE *file, char *word, int *len_word, int *base){
+
+    *len_word = 0;
+    *base = 2;
+    char symbol = fgetc(file);
+
+    while (symbol == ' ' || symbol == '\t' || symbol == '\n'){// до числа
+
+        symbol = fgetc(file);
+    }
+
     int flag = 0;
 
-    // Пропускаем разделители (пробелы, табуляции, новые строки)
-    do {
-        c = fgetc(file);
-        if (c == EOF) {
-            return EOF_REACHED; // Если достигнут конец файла
-        }
-    } while (c == ' ' || c == '\t' || c == '\n');
+    while (symbol != ' ' && symbol != '\t' && symbol != '\n' && symbol != EOF){ // число
 
-    // Чтение числа до следующего разделителя или конца файла
-    while (c != ' ' && c != '\t' && c != '\n' && c != EOF) {
-        if(c == '-' || c == '+') {
-            if (*len != 0) {
-                return INVALID_INPUT; // Знак не может быть не первым символом
+        if (symbol == '-' || symbol == '+')
+        {
+            if (*len_word != 0){
+                return INVALI_INPUT;
             }
-        } else if (!isalnum(c)) {
-            return INVALID_INPUT; // Некорректный символ
+        }
+        else if (!isalnum(symbol) && symbol != '-' && symbol != '+') // fucking /r
+        {
+            symbol = fgetc(file);
+            continue;
         }
 
-        if (isalpha(c)) {
-            c = toupper(c); // Переводим в верхний регистр
-            flag = 1; // Флаг, чтобы игнорировать ведущие нули
-            if (c - 'A' + 10 >= *base) {
-                *base = c - 'A' + 10 + 1; // Увеличение минимального основания
-                if (*base > 36) {
-                    return INVALID_INPUT; // Некорректная система счисления
-                }
-            }
-        } else if (isdigit(c)) {
-            if (c - '0' >= *base) {
-                *base = c - '0' + 1;
-            }
-            if (c != '0') {
-                flag = 1; // Число не является нулем
+
+        if (isalpha(symbol))
+        {
+            symbol = toupper(symbol);
+            flag = 1;
+            if (symbol - 'A' + 10 >= *base)
+            {
+                *base = symbol - 'A' + 10 + 1;
+                if (*base > 36)
+                    return INVALI_INPUT;
             }
         }
 
-        // Добавляем символ к числу, если он не является ведущим нулем
-        if (c != '0' || flag == 1) {
-            num[(*len)++] = c;
+        else if (isdigit(symbol))
+        {
+            if (symbol - '0' >= *base)
+                *base = symbol - '0' + 1;
+            if (symbol != '0')
+                flag = 1;
         }
 
-        // Читаем следующий символ
-        c = fgetc(file);
+        if (symbol != '0' || flag == 1)
+            word[(*len_word)++] = symbol;
 
-        // Если длина числа превышает Capacity, возвращаем ошибку
-        if (*len == Capacity) {
-            return INVALID_INPUT;
-        }
+
+        symbol = fgetc(file);
+        if (*len_word == Capacity)
+            return INVALI_INPUT;
     }
 
-    num[*len] = '\0'; // Завершаем строку
-
+    word[*len_word] = '\0';
     return OK;
 }
 
-
-enum Errors Base_to_10(const char *const s, int base, long long *answer){
+enum Errors Convert(const char *const word, int base, long long *result)
+{
 
     char *endptr;
-    *answer = strtoll(s, &endptr, base);
-    if (*answer == LLONG_MAX || *answer == LLONG_MIN) {
-        return INVALID_INPUT;
-    } else if (*endptr != '\0') { // указывает не на конец строки
-        return INVALID_INPUT;
-    }
+    *result = strtoll(word, &endptr, base);
+    if (*result == LLONG_MAX || *result == LLONG_MIN)
+        return INVALI_INPUT;
+    else if (*endptr != '\0')
+        return INVALI_INPUT;
 
-    return OK;
-}
-
-
-enum Errors Validate_input(int argc, char **argv){
-    char full_path_1[BUFSIZ], full_path_2[BUFSIZ];
-
-    if (!realpath(argv[1], full_path_1) || !realpath(argv[2], full_path_2))
-        return INVALID_INPUT;
-    if (!strcmp(full_path_1, full_path_2))
-        return INVALID_INPUT;
     return OK;
 }

@@ -11,8 +11,8 @@ int main(int argc, char *argv[]) {  // имя  -nd (-d) input out (нет out)
         return INVALID_INPUT;
     }
 
-    FILE *input = fopen(argv[2], "r"); // возвр указатель на структуру FILE (где вся инфа о файле)
-    if (input == NULL) { // NULL это указатель на нулевой адрес
+    FILE *input = fopen(argv[2], "r");
+    if (input == NULL) {
         printf("Error with open file\n");
         return OPEN_FILE_ERROR;
     }
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {  // имя  -nd (-d) input out (нет out)
         } else {
             int len_end = strlen(last_slesh);
             strncpy(outfile_path, argv[2], strlen(argv[2]) - len_end); // копируем весь путь кроме того что после последнего слеша
-            outfile_path[strlen(argv[2]) - len_end] = '\000'; // для завершения копирования добавляем \0 в конец
+            outfile_path[strlen(argv[2]) - len_end] = '\0'; // для завершения копирования добавляем \0 в конец
             strcat(outfile_path, "/out_"); // + out_
             strcat(outfile_path, last_slesh + 1); // + filename.txt
         }

@@ -1,41 +1,30 @@
 #include "head2.3.h"
 
 
+
 int main()
 {
-    Found *ans, *cur;
-    char flag = '1';
-    enum Errors stat = Search_str("str", 1, &ans, "text.txt");
+    char *sub = "n\n\nn";
+    char *file_1 = "test.txt";
 
-    if (stat == INVALID_INPUT)
+    int count = 1;  // Количество файлов
+
+    enum Errors result = Files_read(sub, count, file_1);
+
+    if (result == WRONG_INPUT_ERROR)
     {
-        printf("Error: incorrect input\n");
-        return INVALID_INPUT;
+        printf("Внимание, есть файл(ы), где заданная подстрока не найдена\n");
+        return WRONG_INPUT_ERROR;
+    }
+    else if (result == FILE_OPEN_ERROR)
+    {
+        printf("Ошибка открытия файла\n");
+        return FILE_OPEN_ERROR;
+    }
+    else
+    {
+        printf("Збс\n");
     }
 
-    cur = ans;
-    while (cur)
-    {
-        Found *next = (Found *) cur->next;
-        flag = 0;
-        printf("File: %s line: %d, char: %d;\n", cur->file_name, cur->n_line, cur->n_char);
-        free(cur->file_name);
-        free(cur);
-        cur = next;
-    }
-    if (flag)
-    {
-        printf("Substring not found\n");
-    }
-    if (stat == OPEN_FILE_ERROR)
-    {
-        printf("Error with open file(s)\n");
-        return OPEN_FILE_ERROR;
-    }
-    if (stat == INVALID_MEMORY)
-    {
-        printf("Error with memory\n");
-        return INVALID_MEMORY;
-    }
     return OK;
 }

@@ -6,7 +6,7 @@ int main(int argc, char *argv[]){
     double answer;
     printf("\n\ttest 1\nx - 5.22, eps = 1e-7, left = 5.0, right = 5.5\nExepcted answer: 5.220000\n");
 
-    switch (The_dichotomy(&answer, 5.0, 5.5, 1.e-7, f1)){
+    switch (The_dichotomy(&answer, 0, 2.111, 1.e-7, f1)){
 
         case INVALID_INPUT:{
             printf("Error: incorrect input\n");

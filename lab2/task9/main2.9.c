@@ -5,7 +5,7 @@ int main(){
     double answer[128];
     int len_ans = 0;
 
-    switch(Has_finite_representation(10, answer, &len_ans, 3, 0.125, 0.5, 0.4)){
+    switch(Has_finite_representation(2, answer, &len_ans, 3, 0.125, 0.5, 0.4)){
 
         case INVALID_INPUT:{
             printf("Error: incorrect input number(s)\n");

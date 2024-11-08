@@ -1,70 +1,70 @@
 #include "head1.8.h"
 
-int main(int argc, char *argv[]) {
-
-    if(argc != 3) {
-        printf("Error: incorrect input\n");
-        return INVALID_INPUT;
-    }
-
-    if(Validate_input(argc, argv) != OK) {
-        printf("Error: incorrect input\n");
-        return INVALID_INPUT;
+int main(int argc, char *argv[])
+{
+    if (argc != 3)
+    {
+        printf("Error, incorrect input\n");
+        return INVALI_INPUT;
     }
 
     FILE *input = fopen(argv[1], "r");
     FILE *output = fopen(argv[2], "w");
-
-    if(input == NULL || output == NULL) {
-        if(input != NULL) {
+    if (input == NULL || output == NULL)
+    {
+        if (input != NULL)
             fclose(input);
-        }
-        if(output != NULL) {
+        if (output != NULL)
             fclose(output);
-        }
         printf("Error with open file\n");
-        return OPEN_FILE_ERROR;
+        return FILE_OPEN_ERROR;
     }
 
-    char *num_base = malloc(Capacity * sizeof(char)); // для числа с произвольной системой счисления
-    if(num_base == NULL) {
+    char *num_random_base = malloc(Capacity * sizeof *num_random_base);
+
+    if (num_random_base == NULL)
+    {
+        printf("Error with memory\n");
         fclose(input);
         fclose(output);
-        printf("Error with memory\n");
         return INVALID_MEMORY;
     }
 
-    int base, len;
-    long long num_10;
+    int base, len_word;
+    long long num_base10;
 
-    enum Errors read_error;
-    // Используем корректную проверку конца файла
-    while ((read_error = Read_num(input, num_base, &len, &base)) == OK || read_error == EOF_REACHED) {
-
-        if (len > 0) {
-            if (Base_to_10(num_base, base, &num_10) == INVALID_INPUT) {
-                free(num_base);
-                fclose(input);
-                fclose(output);
-                printf("Error: incorrect input\n");
-                return INVALID_INPUT;
-            }
-
-            fprintf(output, "Число: %s\n", num_base);
-            fprintf(output, "Минимальная система счисления: %d\n", base);
-            fprintf(output, "Число в десятичной системе счисления: %10lld\n", num_10);
-            fprintf(output, "\n");
+    while (!feof(input))
+    {
+        if (Read_num(input, num_random_base, &len_word, &base) == INVALI_INPUT)
+        {
+            free(num_random_base);
+            fclose(input);
+            fclose(output);
+            printf("Error, incorrect input\n");
+            return INVALI_INPUT;
         }
 
-        if (read_error == EOF_REACHED) {
-            break; // Завершение после обработки конца файла
+        if (len_word > 0)
+        {
+            if (Convert(num_random_base, base, &num_base10) == INVALI_INPUT)
+            {
+                free(num_random_base);
+                fclose(input);
+                fclose(output);
+                printf("Error, incorrect input\n");
+                return INVALI_INPUT;
+            }
+
+            fprintf(output, "Входное число: %s\n", num_random_base);
+            fprintf(output, "Минимальное основание: %d\n", base);
+            fprintf(output, "Число в 10сс: %lld\n", num_base10);
+            fprintf(output, "\n");
         }
     }
 
-    printf("Completed\n");
-
-    free(num_base);
+    free(num_random_base);
     fclose(input);
     fclose(output);
+    printf("Complite\n");
     return OK;
 }

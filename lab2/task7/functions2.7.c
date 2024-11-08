@@ -2,7 +2,7 @@
 
 enum Errors The_dichotomy(double *answer, double left, double right, double eps, double (*f)(double)){
 
-    if(eps <= 0.0){ // . тк работаем с double 0-целое 0.-с плавающей точкой
+    if(eps <= 0.0){
         return INVALID_INPUT;
     }
 
@@ -28,7 +28,7 @@ enum Errors The_dichotomy(double *answer, double left, double right, double eps,
 
 double f1(double x)
 {
-    return x - 5.22;
+    return pow(x - 1, 2) / (x - 1);
 }
 
 double f2(double x)

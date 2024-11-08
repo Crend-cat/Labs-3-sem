@@ -16,7 +16,6 @@ int main(int argc, char *argv[]){
 
 
 
-
     long long num_10base;
     long long max_num = LLONG_MIN;
 

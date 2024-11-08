@@ -1,25 +1,23 @@
-#ifndef UNTITLED4_HEAD1_8_H
-#define UNTITLED4_HEAD1_8_H
+#ifndef FUNCTIONS_H_
+#define FUNCTIONS_H_
 
-#include <stdio.h>
+#include "stdio.h"
 #include <stdlib.h>
 #include <limits.h>
 #include <string.h>
 #include <ctype.h>
 
-
 #define Capacity 70
 
-enum Errors{
+enum Errors
+{
     OK,
+    INVALI_INPUT,
     INVALID_MEMORY,
-    INVALID_INPUT,
-    OPEN_FILE_ERROR,
-    EOF_REACHED
+    FILE_OPEN_ERROR
 };
 
-enum Errors Read_num(FILE *file, char *s, int *len, int *base);
-enum Errors Base_to_10(const char *const s, int base, long long *answer);
+enum Errors Read_num(FILE *file, char *word, int *len_word, int *base);
+enum Errors Convert(const char *const word, int base, long long *result);
 
-enum Errors Validate_input(int argc, char **argv);
 #endif
