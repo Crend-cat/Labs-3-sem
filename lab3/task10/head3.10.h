@@ -1,7 +1,3 @@
-//
-// Created by User on 08.11.2024.
-//
-
 #ifndef UNTITLED4_HEAD3_10_H
 #define UNTITLED4_HEAD3_10_H
 

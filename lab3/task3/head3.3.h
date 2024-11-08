@@ -1,5 +1,5 @@
-#ifndef _FUNCTIONS_H_
-#define _FUNCTIONS_H_
+#ifndef UNTITLED4_HEAD3_3_H
+#define UNTITLED4_HEAD3_3_H
 
 #include "stdio.h"
 #include <stdlib.h>
