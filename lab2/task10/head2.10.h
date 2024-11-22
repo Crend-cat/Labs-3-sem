@@ -12,10 +12,11 @@
 enum Errors{
     OK,
     INVALID_MEMORY,
-    INVALID_INPUT,
-    OVERFLOW_ERROR
+    INVALID_INPUT
 };
 
 enum Errors Calc_coefs_polinom(double a, double **coefs, int degree, ...);
+enum Errors Print_f(double *start_coefs, double *new_coefs, int degree, double a);
+
 
 #endif

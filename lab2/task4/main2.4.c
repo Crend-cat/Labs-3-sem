@@ -2,7 +2,7 @@
 
 int main()
 {
-    puts("\nTest 4.1\n");
+    printf("\n4.1\n");
     int ans;
     point p1 = (point){0, 0};
     point p2 = (point){1, 0};
@@ -77,7 +77,7 @@ int main()
     }
 
 
-    puts("\nTest 4.2\n");
+    printf("\n4.2\n");
 
     double result;
 
@@ -87,11 +87,10 @@ int main()
         case INVALID_INPUT:
             printf("Input error\n");
             return INVALID_INPUT;
-            break;
+
         case OVERFLOW_ERROR:
             printf("Overflow error\n");
             return OVERFLOW_ERROR;
-            break;
 
         case OK:
             printf("\t result: %f\n", result);
@@ -127,11 +126,11 @@ int main()
         case INVALID_INPUT:
             printf("Input error\n");
             return INVALID_INPUT;
-            break;
+
         case OVERFLOW_ERROR:
             printf("Overflow error\n");
             return OVERFLOW_ERROR;
-            break;
+
 
         case OK:
             printf("\t result: %f\n", result);
@@ -141,7 +140,7 @@ int main()
     }
 
 
-    puts("\nTest 4.3\n");
+    printf("\n4.3\n");
 
     char answer[100];
     int count = 5;

@@ -20,7 +20,8 @@ int Is_convex(int count_corners, ...)
     first = va_arg(args, point);
     second = va_arg(args, point);
     s3 = va_arg(args, point);
-    component = (Find_component(first, second, s3) >= 0.0) ? 1 : 0;
+    component = (Find_component(first, second, s3) - Eps > 0.0) ? 1 : 0;
+
     s1 = first;
     s2 = second;
     for (int i = 0; i < count_corners - 3; i++)
@@ -28,18 +29,22 @@ int Is_convex(int count_corners, ...)
         s1 = s2;
         s2 = s3;
         s3 = va_arg(args, point);
-        if (((Find_component(s1, s2, s3) >= 0.0) ? 1 : 0) != component)
+
+
+        if (((Find_component(s1, s2, s3) - Eps > 0.0) ? 1 : 0) != component)
         {
             va_end(args);
             return 0;
         }
     }
-    if (((Find_component(s2, s3, first) >= 0.0) ? 1 : 0) != component)
+
+
+    if (((Find_component(s2, s3, first) - Eps > 0.0) ? 1 : 0) != component)
     {
         return 0;
         va_end(args);
     }
-    if (((Find_component(s3, first, second) >= 0.0) ? 1 : 0) != component)
+    if (((Find_component(s3, first, second) - Eps > 0.0) ? 1 : 0) != component)
     {
         return 0;
         va_end(args);
@@ -49,6 +54,11 @@ int Is_convex(int count_corners, ...)
 
 enum Errors Find_polynom(double *ans, double x, int n, ...)
 {
+    if(ans == NULL){
+        return INVALID_INPUT;
+    }
+
+
     *ans = 0;
     if (n < 0)
         return INVALID_INPUT;
@@ -70,6 +80,10 @@ enum Errors Find_polynom(double *ans, double x, int n, ...)
 
 enum Errors String_to_uint(const char *str, unsigned long *answer, int base)
 {
+    if(str == NULL || answer == NULL){
+        return INVALID_INPUT;
+    }
+
     if (str[0] == '-')
         return INVALID_INPUT;
     char *endinp;
@@ -83,6 +97,7 @@ enum Errors String_to_uint(const char *str, unsigned long *answer, int base)
 
 void Convert_to_xbase(unsigned long num, int base, char *answer)
 {
+
     int i, flag_minus = 0;
     char temp;
     int len_answer = 0;
@@ -109,6 +124,10 @@ void Convert_to_xbase(unsigned long num, int base, char *answer)
 
 enum Errors Pow_base(char *number, int base)
 {
+    if(number == NULL){
+        return INVALID_INPUT;
+    }
+
     long int num_10;
     if (String_to_uint(number, &num_10, base) != OK || ULONG_MAX / num_10 < num_10)
         return INVALID_INPUT;
@@ -119,6 +138,10 @@ enum Errors Pow_base(char *number, int base)
 
 enum Errors Sum_base(char *number_1, char *number_2, int base, unsigned long *ans)
 {
+    if(number_1 == NULL || number_2 == NULL || ans == NULL){
+        return INVALID_INPUT;
+    }
+
     long int a_10, b_10;
     if (String_to_uint(number_1, &a_10, base) != OK)
         return INVALID_INPUT;
@@ -137,6 +160,10 @@ enum Errors Sum_base(char *number_1, char *number_2, int base, unsigned long *an
 
 enum Errors Kaprekar(int count_numbers, char *ans, int base, ...)
 {
+    if(ans == NULL){
+        return INVALID_INPUT;
+    }
+
     if (base < 2 || base > 36)
         return INVALID_INPUT;
     va_list args;
@@ -158,7 +185,7 @@ enum Errors Kaprekar(int count_numbers, char *ans, int base, ...)
         flag = 0;
         if (len == 1 && number[0] == '1')
             flag = 1;
-        for (int j = 1; j < len; j++)
+        for (int j = 1; j < len; j++) // разбиваем число на 2 части и постепенно увеличиваем левую
         {
             strncpy(left, number, j);
             left[j] = '\0';
@@ -167,7 +194,7 @@ enum Errors Kaprekar(int count_numbers, char *ans, int base, ...)
                 va_end(args);
                 return INVALID_INPUT;
             }
-            if (sum == x)
+            if (sum == x) // х - исходное число
             {
                 flag = 1;
                 break;
@@ -175,12 +202,13 @@ enum Errors Kaprekar(int count_numbers, char *ans, int base, ...)
         }
         if (!flag)
         {
-            Convert_to_xbase(x, base, number);
+
+
             ans[i] = '-';
         }
         else
         {
-            Convert_to_xbase(x, base, number);
+
             ans[i] = '+';
         }
     }

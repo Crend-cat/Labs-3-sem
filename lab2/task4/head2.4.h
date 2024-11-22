@@ -11,6 +11,7 @@
 #include <string.h>
 
 #define Capacity 100
+#define Eps 1e10
 
 enum Errors{
     OK,
@@ -32,7 +33,5 @@ void Convert_to_xbase(unsigned long num, int base, char *result);
 enum Errors Pow_base(char *number, int base);
 enum Errors Sum_base(char *number_1, char *number_2, int base, unsigned long *res);
 enum Errors Kaprekar(int count_numbers, char *ans, int base, ...);
-
-
 
 #endif
