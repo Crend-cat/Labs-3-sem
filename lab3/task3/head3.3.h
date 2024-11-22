@@ -19,6 +19,7 @@ enum Errors{
     OPEN_FILE_ERROR
 };
 
+
 typedef struct Employee
 {
     unsigned int id;

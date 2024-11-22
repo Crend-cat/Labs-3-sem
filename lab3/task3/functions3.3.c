@@ -36,14 +36,17 @@ enum Errors Validate_data(Employee data)
     return OK;
 }
 
-enum Errors Read_file(FILE *in,Employee **data1, int *size_data)
+enum Errors Read_file(FILE *in, Employee **data1, int *size_data)
 {
+
+    if(size_data == NULL){
+        return INVALID_INPUT;
+    }
+    
     int cap = 2;
     int count;
     *size_data = 0;
 
-    if (!data1)
-        return INVALID_INPUT;
     *data1 = NULL;
 
     Employee *data = (Employee *)malloc(sizeof(Employee) * cap);
@@ -69,7 +72,6 @@ enum Errors Read_file(FILE *in,Employee **data1, int *size_data)
                 free(data);
                 return INVALID_MEMORY;
             }
-
             data = realoc;
         }
     }
@@ -85,6 +87,11 @@ enum Errors Read_file(FILE *in,Employee **data1, int *size_data)
 
 int Sort_a(const void *A, const void *B)
 {
+
+    if(A == NULL || B == NULL){
+        return INVALID_INPUT;
+    }
+
     const Employee *a = (const Employee *)A;
     const Employee *b = (const Employee *)B;
     int temp;
@@ -109,7 +116,13 @@ int Sort_a(const void *A, const void *B)
     return a->id - b->id;
 }
 
+
 int Sort_d(const void *A, const void *B)
 {
+
+    if(A == NULL || B == NULL){
+        return INVALID_INPUT;
+    }
+
     return Sort_a(A, B) * -1;
 }

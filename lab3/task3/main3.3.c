@@ -37,6 +37,7 @@ int main(int argc, char **argv)
     {
         fprintf(output, "%u %s %s %lf\n", data[i].id, data[i].name, data[i].surname, data[i].money);
     }
+
     free(data);
     fclose(input);
     fclose(output);
