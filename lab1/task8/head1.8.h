@@ -12,12 +12,13 @@
 enum Errors
 {
     OK,
-    INVALI_INPUT,
+    INVALID_INPUT,
     INVALID_MEMORY,
     FILE_OPEN_ERROR
 };
 
-enum Errors Read_num(FILE *file, char *word, int *len_word, int *base);
-enum Errors Convert(const char *const word, int base, long long *result);
+enum Errors Read_num(FILE *file, char *word, int *len_word, int *base, int *minus);
+enum Errors Convert(char *const word, int base, long long *result);
+enum Errors Validate_input(int argc, char **argv);
 
 #endif

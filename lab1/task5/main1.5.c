@@ -8,9 +8,10 @@ int main(int argc, char *argv[])
         return INVALID_INPUT;
     }
 
+
     double eps, x, result;
     int flag = 0;
-    if (Str_to_d(argv[1], &eps) != OK || eps <= 0)
+    if (Str_to_d(argv[1], &eps) != OK || eps <= 0.0)
     {
         printf("Error: uncorrect input\n");
         return INVALID_INPUT;
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
         printf("Error: uncorrect input\n");
         return INVALID_INPUT;
     }
+
 
     if (Sum_a(x, eps, &result) != OK)
     {

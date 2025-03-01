@@ -1,4 +1,6 @@
 #include "head3.10.h"
+// gcc main3.10.c functions3.10.c -std=c99 -Wall -o task3.10
+// ./task3.10 input.txt output.txt
 
 int main(int argc, char **argv){
 
@@ -16,6 +18,7 @@ int main(int argc, char **argv){
         puts("Error with memory\n");
         return INVALID_MEMORY;
     }
+
     fclose(input);
     fclose(output);
 

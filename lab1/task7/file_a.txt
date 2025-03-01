@@ -1,0 +1,12 @@
+one three
+five
+
+seven nine      eleven
+
+last_from_file1 two four six
+                eight   ten       twelf
+
+romashka
+        paporotnic
+riba        helicopter
+lopata table sun

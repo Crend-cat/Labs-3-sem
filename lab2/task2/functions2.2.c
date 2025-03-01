@@ -13,6 +13,7 @@ enum Errors Sr_geometric(double *answer, int count, ...){
     for(int i = 0; i < count; ++i){
         cur = va_arg(args, double);
         if(cur < 0){
+            va_end(args);
             return INVALID_INPUT;
         }
 
@@ -22,10 +23,11 @@ enum Errors Sr_geometric(double *answer, int count, ...){
             return OVERFLOW_ERROR;
         }
     }
-    *answer = pow(*answer, (double)1.0 / count);
+    *answer = pow(*answer, 1.0 / count);
     va_end(args);
     return OK;
 }
+
 
 enum Errors Fast_pow(double base, int degree, double *answer){
 

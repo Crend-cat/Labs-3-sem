@@ -19,8 +19,8 @@ enum Errors Build_tree(FILE *input, FILE *output)
     Init_tree(root);
     temp = root;
 
-    while ((c = getc(input)))
-    {
+    while ((c = getc(input))){
+
         if (c == EOF)
         {
             Print_tree(root, 0, output);
@@ -43,7 +43,7 @@ enum Errors Build_tree(FILE *input, FILE *output)
         }
         else if (isspace(c))
             continue;
-        else if (c == '(')
+        else if (c == '(') // сын
         {
             temp->son = (Node *)malloc(sizeof(Node));
             if (!temp->son)
@@ -56,11 +56,11 @@ enum Errors Build_tree(FILE *input, FILE *output)
             temp->brother = NULL;
             temp->son = NULL;
         }
-        else if (c == ')')
+        else if (c == ')') // к родителю
         {
             temp = temp->prev;
         }
-        else if (c == ',')
+        else if (c == ',') // брат
         {
             temp->brother = (Node *)malloc(sizeof(Node));
             if (!temp->brother)
@@ -107,8 +107,9 @@ void Delete_tree(Node *root)
     free(root);
 }
 
-enum Errors Validate_input(int argc, char **argv)
-{
+
+enum Errors Validate_input(int argc, char **argv){
+
     char in[BUFSIZ], out[BUFSIZ];
     if (argc != 3)
         return INVALID_INPUT;

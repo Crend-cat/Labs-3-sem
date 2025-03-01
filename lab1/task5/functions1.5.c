@@ -15,6 +15,7 @@ enum Errors Str_to_d(const char *str, double *result)
         else if ((str[i] < '0' || str[i] > '9') && !(str[i] == '-' && i == 0))
             return INVALID_INPUT;
     }
+
     if (sscanf(str, "%lf", result) != 1)
         return INVALID_INPUT;
     return OK;
@@ -51,6 +52,7 @@ enum Errors Sum_b(double x, double eps, double *result)
     }
     return OK;
 }
+
 
 enum Errors Sum_c(double x, double eps, double *result)
 {

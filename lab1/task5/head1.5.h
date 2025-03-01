@@ -15,6 +15,7 @@ enum Errors{
     OVERFLOW_ERROR
 };
 
+
 enum Errors Str_to_d(const char *str, double *result);
 enum Errors Sum_a(double x, double eps, double *result);
 enum Errors Sum_b(double x, double eps, double *result);

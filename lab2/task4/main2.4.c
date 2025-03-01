@@ -81,7 +81,7 @@ int main()
 
     double result;
 
-    printf("\ttest 1\n2x^2 + 3x + 4 at x = 1\nexpected result: 9\n");
+    printf("\ttest 1\n2x^2 + 3x + 4 at x = 1\nexpected result: 9\n"); // без pow сделать
     switch (Find_polynom(&result, 1.0, 2, 2.0, 3.0, 4.0))
     {
         case INVALID_INPUT:
@@ -200,6 +200,5 @@ int main()
         }
         printf("\n");
     }
-
     return 0;
 }

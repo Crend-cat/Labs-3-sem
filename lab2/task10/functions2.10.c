@@ -48,8 +48,19 @@ enum Errors Calc_coefs_polinom(double a, double **coefs, int degree, ...) // а 
     double *start_coefs = (double *)malloc((degree + 1) * sizeof(double));
     double *start_koefs = (double *)malloc((degree + 1) * sizeof(double));
     *coefs = NULL;
-    if (!start_coefs)
-        return INVALID_MEMORY;
+
+
+    // dfvdfvd
+    if (!start_coefs || !start_koefs){
+        if(!start_coefs) {
+            free(start_koefs);
+            return INVALID_INPUT;
+        }
+        if(!start_koefs){
+            free(start_coefs);
+            return INVALID_INPUT;
+        }
+    }
 
     double *new_coefs = (double *)malloc((degree + 1) * sizeof(double));
     if (!new_coefs)

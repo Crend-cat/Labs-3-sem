@@ -16,6 +16,7 @@ enum Errors{
     OVERFLOW_ERROR
 };
 
+
 enum Errors Str_to_d(const char *str, double *result);
 enum Errors Integral(double eps, double *result, double (*function)(double), void (*method)(int, double *, double (*)(double)));
 double F_a(double x);

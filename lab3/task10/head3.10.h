@@ -24,6 +24,7 @@ typedef struct Node
     struct Node *son, *brother, *prev;
 } Node;
 
+
 enum Errors Build_tree(FILE *input, FILE *output);
 void Init_tree(Node *root);
 void Print_tree(Node *root, int level, FILE *output);

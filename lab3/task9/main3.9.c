@@ -1,3 +1,11 @@
-//
-// Created by User on 08.11.2024.
-//
+#include <stdio.h>
+#include <unistd.h>
+int main()
+{
+    if(fork() || fork()){
+        fork();
+    }
+
+    printf("forked\n");
+    return 0;
+}

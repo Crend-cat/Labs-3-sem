@@ -86,8 +86,8 @@ char* KMPsearch(char* pattern, char* text) // возвращает указат�
     return NULL;
 }
 
-enum Errors Find_substr(char *substring, FILE* file, char *file_name)
-{
+enum Errors Find_substr(char *substring, FILE* file, char *file_name){
+
     // Определяем размер файла
     fseek(file, 0, SEEK_END); // указатель в конец
     long file_size = ftell(file); // позиция указателя - 0 = размер в байтах
@@ -96,7 +96,7 @@ enum Errors Find_substr(char *substring, FILE* file, char *file_name)
     // Выделяем память для содержимого файла
     char *file_content = (char *)malloc(file_size + 1);
     if (!file_content) {
-        return MEMORY_ERROR;
+        return INVALID_MEMORY;
     }
 
     // Чтение файла в память
@@ -121,8 +121,7 @@ enum Errors Find_substr(char *substring, FILE* file, char *file_name)
     char *line_start = file_content; // строка
 
     // Основной цикл поиска совпадений
-    while ((current_pos = KMPsearch(substring, current_pos)) != NULL) // получисли указатель на начало подстр в тексте
-    {
+    while ((current_pos = KMPsearch(substring, current_pos)) != NULL){ // получисли указатель на начало подстр в тексте
         found = 1; // хотя бы 1 нашли
 
         // Подсчет номера строки и позиции в строке
@@ -130,14 +129,14 @@ enum Errors Find_substr(char *substring, FILE* file, char *file_name)
         {
             if (*line_start == '\n') { // считаем сколько строк прошли
                 line++;
-                global_offset = line_start - file_content + 1;
+                global_offset = line_start - file_content + 1; // вроде адрес начала новой строки
             }
             line_start++;
         }
 
         int position_in_line = (current_pos - (file_content + global_offset)) + 1; // позиция - адрес начала строки + 1(тк с 1 нумеруем) = позиция в строке
 
-        printf("Файл %s: подстрока найдена в строке %d на позиции %d\n", file_name, line, position_in_line);
+        printf("File %s: line %d position %d\n", file_name, line, position_in_line);
 
         // Переход к следующему символу
         current_pos++;
@@ -146,8 +145,8 @@ enum Errors Find_substr(char *substring, FILE* file, char *file_name)
     free(file_content);
 
     if (!found) {
-        printf("В файле %s подстрока не найдена\n", file_name);
-        return WRONG_INPUT_ERROR;
+        printf("The substring was not found in the file %s\n", file_name);
+        return INVALID_INPUT;
     }
 
     return OK;
@@ -158,8 +157,8 @@ enum Errors Files_read(char *substring, int count, ...)
     va_list ptr;
     va_start(ptr, count);
 
-    for (int i = 0; i < count; i++)
-    {
+    for (int i = 0; i < count; i++){
+
         char *file_name = va_arg(ptr, char*);
         FILE *file = fopen(file_name, "r");
         if (!file)
@@ -170,7 +169,7 @@ enum Errors Files_read(char *substring, int count, ...)
         if (Find_substr(substring, file, file_name) != OK)
         {
             fclose(file);
-            return WRONG_INPUT_ERROR;
+            return INVALID_INPUT;
         }
         fclose(file);
     }

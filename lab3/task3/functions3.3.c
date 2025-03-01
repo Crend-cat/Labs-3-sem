@@ -5,19 +5,18 @@ enum Errors Validate_input(int argc, char **argv)
     if (argc != 4 || (argv[2][0] != '/' && argv[2][0] != '-') || argv[2][2] != '\0')
         return INVALID_INPUT;
 
-    char full_path_1[BUFSIZ], full_path_2[BUFSIZ];
-    if (!realpath(argv[1], full_path_1) || !realpath(argv[3], full_path_2))
+    char full_path_1[BUFSIZ], full_path_2[BUFSIZ], full_path_3[BUFSIZ];
+    if (!realpath(argv[1], full_path_1) || !realpath(argv[3], full_path_2) || !realpath(argv[3], full_path_3))
         return INVALID_INPUT;
     if (!strcmp(full_path_1, full_path_2))
         return INVALID_INPUT;
     return OK;
 }
 
+
 enum Errors Validate_data(Employee data)
 {
-    int len = strlen(data.name);
-    int i;
-
+    int len = strlen(data.name), i;
     for (i = 0; i < len; ++i)
     {
         if (!((data.name[i] >= 'a' && data.name[i] <= 'z') || (data.name[i] >= 'A' && data.name[i] <= 'Z')))
@@ -36,13 +35,14 @@ enum Errors Validate_data(Employee data)
     return OK;
 }
 
+
 enum Errors Read_file(FILE *in, Employee **data1, int *size_data)
 {
 
     if(size_data == NULL){
         return INVALID_INPUT;
     }
-    
+
     int cap = 2;
     int count;
     *size_data = 0;
@@ -84,6 +84,7 @@ enum Errors Read_file(FILE *in, Employee **data1, int *size_data)
     *data1 = data;
     return OK;
 }
+
 
 int Sort_a(const void *A, const void *B)
 {

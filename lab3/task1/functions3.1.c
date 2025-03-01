@@ -28,8 +28,8 @@ enum Errors To_xbase(int num, int a, char *answer, int *size){
     }
 
     do{
-        mask = Add(1 << a, -1);
-        d = num & mask;
+        mask = Add(1 << a, -1); // 3
+        d = num & mask;   // 13 & 3..
         num >>= a;
         answer[*size] = base[d];
         *size = Add(*size, 1);

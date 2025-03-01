@@ -65,15 +65,27 @@ enum Errors Find_polynom(double *ans, double x, int n, ...)
 
     va_list coef;
     va_start(coef, n);
-    for (int i = n; i >= 0; --i)
+
+    for (int i = 0; i <= n; ++i)
     {
-        *ans += pow(x, i) * va_arg(coef, double);
+        // 3x^3+5x^2+7x+4
+        // (((0*x + 3) * x + 5) * x + 7) * x + 4
+
+        if(i == 0){
+            *ans = va_arg(coef, double) * x;
+        }
+        else {
+            *ans = (*ans + va_arg(coef, double)) * x;
+        }
+
+        //*ans += pow(x, i) * va_arg(coef, double);
         if (isinf(*ans) || isnan(*ans))
         {
             va_end(coef);
             return OVERFLOW_ERROR;
         }
     }
+    //*ans /= x;
     va_end(coef);
     return OK;
 }

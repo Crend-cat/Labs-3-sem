@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
         return INVALID_INPUT;
     }
 
+
     double result;
     if (Integral(eps, &result, F_a, Right_rect))
     {
@@ -40,5 +41,6 @@ int main(int argc, char *argv[])
         printf("The epsilon is too high\n");
         return INVALID_INPUT;
     }
+
     printf("%lf\n", result);
 }

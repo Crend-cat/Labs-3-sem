@@ -4,12 +4,13 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
  enum Errors{
     OK,
-    WRONG_INPUT_ERROR,
-    MEMORY_ERROR,
+    INVALID_INPUT,
+    INVALID_MEMORY,
     FILE_OPEN_ERROR
 };
 

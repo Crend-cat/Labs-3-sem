@@ -42,7 +42,7 @@ double F_d(double x)
 
 void Right_rect(int n, double *result, double (*function)(double))
 {
-    double h = 1.0 / n, sum = 0;
+    double h = 1.0 / n, sum = 0; // h - длина основания прямоугольников (длина интервалов)
     for (int i = 1; i <= n; i++)
     {
         sum += function((double)i * h);
@@ -62,7 +62,7 @@ void Left_rect(int n, double *result, double (*function)(double))
 
 enum Errors Integral(double eps, double *result, double (*function)(double), void (*method)(int, double *, double (*)(double)))
 {
-    double prev = 0.0, cur = 0.0, n = 1;
+    double prev = 0.0, cur = 0.0, n = 1; // предудущее / нынешнее значение интеграла
     do
     {
         if (INT_MAX / 2 < n)
@@ -72,6 +72,7 @@ enum Errors Integral(double eps, double *result, double (*function)(double), voi
         method(n, &cur, function);
 
     } while (fabs(prev - cur) >= eps);
+
     *result = cur;
     return OK;
 }
